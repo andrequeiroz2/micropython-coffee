@@ -1,0 +1,2 @@
+#!/bin/bash
+ampy ls | xargs -L1 ampy rm

@@ -1,0 +1,3 @@
+#!/bin/bash
+ls *.py | xargs -L1 ampy put
+ampy ls
