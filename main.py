@@ -1,2 +1,5 @@
-from mqtt_client import init
-init()
+import server
+
+
+def listen():
+    server.listen()
