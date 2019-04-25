@@ -1,6 +1,6 @@
 import machine
 import network
-
+import ubinascii
 import file
 
 
@@ -24,6 +24,9 @@ def connect():
         return False
     return True
 
+def getMacAddress():
+    mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
+    return mac
 
 def access_point():
     ap = network.WLAN(network.AP_IF)

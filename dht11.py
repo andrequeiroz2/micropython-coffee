@@ -10,7 +10,5 @@ def temperature():
   temperature=d.temperature()
   humidity=d.humidity()
  
-  print(d.temperature())
-  print(d.humidity())
   return temperature,humidity
   
