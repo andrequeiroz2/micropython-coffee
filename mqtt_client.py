@@ -25,41 +25,13 @@ client = MQTTClient(CONFIG['CLIENT_ID'], CONFIG['MQTT_BROKER'],
 # Method to act based on message received
 
 
-def onMessage(topic, msg):
-    print("Topic: %s, Message: %s" % (topic, msg))
-
-    if msg == b"on":
-        pin.on()
-        # led.on()
-    elif msg == b"off":
-        pin.off()
-        # led.off()
-
-
-def init():
-    client.set_callback(onMessage)
+def init(last_to_will):
+    if last_to_will:
+        client.set_last_will(
+            topic_status, "Sensor Offline", qos=0, retain=True)
     client.connect()
 
 
 def publish(topic, msg):
+    print("publish to: ", topic, "data: ", msg)
     client.publish(topic, msg)
-
-
-def subscribe(topics):
-    print(topics)
-    for topic in topics:
-        client.subscribe(topic)
-        print("ESP8266 is Connected to %s and subscribed to %s topic" %
-              (CONFIG['MQTT_BROKER'], topic))
-
-    while True:
-        try:
-            client.check_msg()
-        except Exception as e:
-            print("type error: " + str(e))
-
-    client.disconnect()
-
-    # print("wait_msg")
-    # client.wait_msg()
-    # msg = (client.check_msg())

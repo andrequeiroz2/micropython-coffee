@@ -1,10 +1,7 @@
 import network
 import ubinascii
 
-TYPE_DEVICE = "relay"
-NAME_PROJECT = 'devicehub'
-
-topic_sub = ['relay']
+topic_pub = ['temperature', 'humidity', 'status']
 
 
 def getMacAddress():
@@ -12,9 +9,9 @@ def getMacAddress():
     return mac
 
 
-def factory_topic_sub():
-    topics_sub = factory_topic_composer(topic_sub)
-    return topics_sub
+def factory_topic_pub():
+    topics_pub = factory_topic_composer(topic_pub)
+    return topics_pub
 
 
 def factory_topic_composer(args):
