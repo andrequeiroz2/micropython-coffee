@@ -2,13 +2,13 @@
 if [ "$1" != "" ]; then
     type="$1"
 else
-    echo "Positional parameter 1 is empty"
+    echo "Parameter type is empty"
 fi
 
 if [ "$2" != "" ]; then
     image="$2"
 else
-    echo "Positional parameter 1 is empty"
+    echo "Parameter image is empty"
 fi
 
 if [ type=="esp32" ]; then
