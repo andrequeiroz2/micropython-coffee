@@ -4,7 +4,7 @@ from umqtt.robust import MQTTClient
 import time
 
 # Rele
-pin = machine.Pin(14, machine.Pin.OUT)
+pin = machine.Pin(4, machine.Pin.OUT)
 
 MQTT_BROKER = "broker.hivemq.com"
 
