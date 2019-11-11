@@ -1,8 +1,10 @@
 import server
 import mqtt_client
 import wifi
+import time
 from board import factory_topic_pub
 from dht11 import get_data_dht11
+Tpin = 4
 
 is_connected = wifi.connect()
 
@@ -12,26 +14,21 @@ if not is_connected:
     server.listen()
 else:
     print("connected wifi")
-    topics = factory_topic_sub()
-    mqtt_client.init(True)
+    topics = factory_topic_pub()
+    mqtt_client.init()
+
+    topic_temp = str(topics[0])
+    topic_humd = str(topics[1])
 
     while True:
-        try:
-            client.check_msg()
-        except Exception as e:
-            print("type error: " + str(e))
 
-        sensor = get_data_dht11()
-        temp = str(topics[0])
-        humd = str(topics[1])
+        sensor = get_data_dht11(Tpin)
+        temp = str(sensor[0])
+        humd = str(sensor[1])
 
-        client.publish(topic_temp, temp)
-        client.publish(topic_humd, humd)
+        mqtt_client.publish(topic_temp, temp)
+        mqtt_client.publish(topic_humd, humd)
 
         time.sleep(20)
 
-        try:
-            client.check_msg()
-
-        except Exception as e:
-            print("type error: " + str(e))
+    mqtt_client.disconnect()

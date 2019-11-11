@@ -1,7 +1,7 @@
 import network
 import ubinascii
 
-topic_pub = ['temperature', 'humidity', 'status']
+topic_pub = ['temperature', 'humidity']
 
 
 def getMacAddress():
