@@ -1,6 +1,5 @@
 import dht
 import machine
-<< << << < HEAD
 
 
 def get_data_dht11(pin):
